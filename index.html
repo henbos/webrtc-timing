@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Provisional Identifiers for WebRTC's Statistics API</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
+  <script class='remove'>
+  "use strict";
+  // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
+  var respecConfig = {
+    "doRDFa": false,
+    "format": "markdown",
+    // "githubAPI": "https://api.github.com/repos/WICG/webrtc-provisional-stats",
+    // "issueBase": "https://www.github.com/WICG/webrtc-provisional-stats/issues/",
+    "noLegacyStyle": true,
+    "editors": [{
+        name: "Henrik Boström",
+        email: "hbos@google.com",
+        company: "Google Inc.",
+      },
+      {
+        name: "Harald Alvestrand",
+        email: "hta@google.com",
+        company: "Google Inc.",
+      },
+      // Add additional editors here.
+      // https://github.com/w3c/respec/wiki/editors
+    ],
+    "shortName": "webrtc-provisional-stats",
+    "specStatus": "CG-DRAFT",
+    "subjectPrefix": "[webrtc-provisional-stats]",
+    // "wg": "WICG",
+    "otherLinks": [{
+      "key": "Repository",
+      "data": [{
+        "value": "We are on Github.",
+        "href": "https://github.com/henbos/webrtc-provisional-stats"
+      }, {
+        "value": "File a bug.",
+        "href": "https://github.com/henbos/webrtc-provisional-stats/issues"
+      }, {
+        "value": "Commit history.",
+        "href": "https://github.com/henbos/webrtc-provisional-stats/commits/master"
+      }, ]
+    }],
+  };
+  </script>
+</head>
+
+<body>
+  <section id="abstract">
+    <p>
+      TODO(hbos): Fill in.
+    </p>
+  </section>
+  <section id="sotd">
+    <p>
+      This is an unofficial proposal.
+    </p>
+  </section>
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      See <a href="https://github.com/w3c/respec/wiki/User's-Guide">ReSpec's
+      user guide</a> for how to get started!
+    </p>
+  </section>
+  <section data-dfn-for="Foo">
+    <h2>Start your spec!</h2>
+    <pre class="idl">
+    interface Foo {
+      attribute Bar bar;
+      void doTheFoo();
+    };
+    </pre>
+    <p>
+      See <a href="https://github.com/w3c/respec/wiki/WebIDL-Guide">ReSpec's
+      WebIDL guide</a> for how to write [[!WebIDL-2]] interfaces!
+    </p>
+    <p>
+      The <dfn>doTheFoo</dfn> method.
+    </p>
+    <p>
+      The <dfn>bar</dfn> attribute.
+    </p>
+  </section>
+  <section id="RTCOutboundRtpStreamStats-dict*">
+    <h3>
+      <dfn>RTCOutboundRtpStreamStats</dfn> dictionary non-standardized members
+    </h3>
+    <pre class="idl">partial dictionary RTCOutboundRtpStreamStats {
+      DOMString  contentType;
+};</pre>
+    <dl data-link-for="RTCOutboundRtpStreamStats" data-dfn-for="RTCOutboundRtpStreamStats" class=
+    "dictionary-members">
+      <dt>
+        <dfn><code>contentType</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></span>
+      </dt>
+      <dd>
+        <p>
+          This metric exposes the <a href="https://webrtc.org/experiments/rtp-hdrext/video-content-type/" title="video-content-type">video-content-type</a>
+          of the last key frame sent. This value is updated every time the last
+          packet of a key frame is sent, and it is updated as follows: if this
+          packet contained the video-content-type RTP header extension value
+          0x00, <code>contentType</code> is <code>"unspecified"</code>, if it is
+          0x01, <code>contentType</code> is <code>"screenshare"</code>. In all
+          other cases, such as if the header extension is missing, its value is
+          invalid or no last packet of a key frame has been sent yet,
+          <code>contentType</code> is missing.
+        </p>
+        </p>
+      </dd>
+    </dl>
+  </section>
+  <section id="RTCInboundRtpStreamStats-dict*">
+    <h3>
+      <dfn>RTCInboundRtpStreamStats</dfn> dictionary non-standardized members
+    </h3>
+    <pre class="idl">partial dictionary RTCInboundRtpStreamStats {
+      DOMString  contentType;
+};</pre>
+    <dl data-link-for="RTCInboundRtpStreamStats" data-dfn-for="RTCInboundRtpStreamStats" class=
+    "dictionary-members">
+      <dt>
+        <dfn><code>contentType</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a></span>
+      </dt>
+      <dd>
+        <p>
+          This metric exposes the <a href="https://webrtc.org/experiments/rtp-hdrext/video-content-type/" title="video-content-type">video-content-type</a>
+          of the last key frame received. This value is updated every time the
+          last packet of a key frame is received, and it is updated as follows:
+          if this packet contained the video-content-type RTP header extension
+          value 0x00, <code>contentType</code> is <code>"unspecified"</code>, if
+          it is 0x01, <code>contentType</code> is <code>"screenshare"</code>. In
+          all other cases, such as if the header extension is missing, its value
+          is invalid or no last packet of a key frame has been received yet,
+          <code>contentType</code> is missing.
+        </p>
+        </p>
+      </dd>
+    </dl>
+  </section>
+  <section id="RTCAudioReceiverStats-dict*">
+    <h3>
+      <dfn>RTCAudioReceiverStats</dfn> dictionary non-standardized members
+    </h3>
+    <pre class="idl">partial dictionary RTCAudioReceiverStats {
+      unsigned long long jitterBufferFlushes;
+};</pre>
+    <dl data-link-for="RTCAudioReceiverStats" data-dfn-for="RTCAudioReceiverStats" class=
+    "dictionary-members">
+      <dt>
+        <dfn><code>jitterBufferFlushes</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-unsigned-long-long">unsigned long long</a></span>
+      </dt>
+      <dd>
+        <p>
+          Experimental stat which is available <a href="https://docs.google.com/document/d/1stYIZhEmDZ7NJF9gjjsM66eLFJUdc-14a3QutrFbIwI/edit#" title="experiment description">under origin trial in Chromium starting from M72 version</a>.
+          Counts the total number of times the jitter buffer
+          reaches its maximum capacity and gets flushed.
+        </p>
+      </dd>
+    </dl>
+  </section>
+  <section id="RTCVideoReceiverStats-dict*">
+    <h3>
+      <dfn>RTCVideoReceiverStats</dfn> dictionary non-standardized members
+    </h3>
+    <pre class="idl">partial dictionary RTCVideoReceiverStats {
+      unsigned long freezeCount;
+      unsigned long pauseCount;
+      double totalFreezesDuration;
+      double totalPausesDuration;
+      double totalFramesDuration;
+      double sumOfSquaredFramesDuration;
+};</pre>
+    <dl data-link-for="RTCVideoReceiverStats" data-dfn-for="RTCVideoReceiverStats" class=
+    "dictionary-members">
+      <dt>
+        <dfn><code>freezeCount</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-unsigned-long">unsigned long</a></span>
+      </dt>
+      <dd>
+        <p>
+          Count the total number of video freezes experienced by this receiver.
+          It is a freeze if frame duration, which is time interval between two
+          consecutively rendered frames, is equal or exceeds
+          Max(3 * avg_frame_duration_ms, avg_frame_duration_ms + 150), where
+          avg_frame_duration_ms is linear average of durations of last 30 rendered
+          frames.
+        </p>
+      </dd>
+      <dt>
+        <dfn><code>pauseCount</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-unsigned-long">unsigned long</a></span>
+      </dt>
+      <dd>
+        <p>
+          Count the total number of video pauses experienced by this receiver.
+          Video is considered to be paused if time passed since last received
+          packet exceeds 5 seconds.
+        </p>
+      </dd>
+      <dt>
+        <dfn><code>totalFreezesDuration</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-double">double</a></span>
+      </dt>
+      <dd>
+        <p>
+          Total duration of rendered frames which are considered as frozen (for
+          definition of freeze see <a>freezeCount</a>), in seconds. This value
+          is updated when a frame is rendered.
+        </p>
+      </dd>
+      <dt>
+        <dfn><code>totalPausesDuration</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-double">double</a></span>
+      </dt>
+      <dd>
+        <p>
+          Total duration of pauses (for definition of pause see <a>pauseCount</a>),
+          in seconds. This value is updated when a frame is rendered.
+        </p>
+      </dd>
+      <dt>
+        <dfn><code>totalFramesDuration</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-double">double</a></span>
+      </dt>
+      <dd>
+        <p>
+          Total duration of all rendered video frames, in seconds. This value is
+          updated when a frame is rendered.
+        </p>
+      </dd>
+      <dt>
+        <dfn><code>sumOfSquaredFramesDuration</code></dfn> of type
+        <span class="idlMemberType"><a href="https://heycam.github.io/webidl/#idl-unsigned long">double</a></span>
+      </dt>
+      <dd>
+        <p>
+          Sum of squared duration of all rendered frames. It can be used to calculate
+          harmonic frame rate:
+          <p>
+            <code><a>totalFramesDuration / sumOfSquaredFrameDurations</a></code>
+          </p>
+          This value is updated when a frame is rendered.
+        </p>
+      </dd>
+    </dl>
+  </section>
+</body>
+
+</html>
