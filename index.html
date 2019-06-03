@@ -80,8 +80,8 @@
         <code>RTCLatencyCategory</code>, initialized to <code>"interactive"
         </code>.</dt>
         <dd>
-          <p>This attribute affects tradeoffs between media quality and latency.
-          It is up to the browser how best to handle this preference.</p>
+          <p>This attribute affects tradeoffs between audio or video quality
+          and latency.</p>
         </dd>
       </dl>
     </section>
@@ -100,18 +100,18 @@
             </tr>
             <tr>
               <td><dfn data-idl><code>balanced</code></dfn></td>
-              <td>Balance media quality and latency.</td>
+              <td>Balance audio or video quality and latency.</td>
             </tr>
             <tr>
               <td><dfn data-idl><code>interactive</code></dfn></td>
-              <td>Provide the lowest latency possible without noticeable media
-              distortions such as audible speech expansions or video freezes.
-              This is the default.
+              <td>Provide the lowest latency possible without noticeable audio
+              or video distortions such as audible speech expansions or video
+              freezes. This is the default.
               </td>
             </tr>
             <tr>
               <td><dfn data-idl><code>playback</code></dfn></td>
-              <td>Prioritize quality by increasing latency.</td>
+              <td>Prioritize quality.</td>
             </tr>
           </tbody>
         </table>
