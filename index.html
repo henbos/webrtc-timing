@@ -84,23 +84,31 @@
         <dt><code><dfn>jitterBufferDelayHint</dfn></code> of type <span class=
         "idlAttrType"><a>double</a></span>, nullable</dt>
         <dd>
-          <p>This attribute affects how much additional delay the system adds
-          before decoding and playout delays, by adjusting the length of the
-          jitter buffer using a <i>hint</i>. This allows the application to
-          influence the tradeoffs between having a longer or shorter jitter
-          buffer. The longer the buffer, the more chance there is that packets
-          arrive in time for playout, but the higher the delay is. The shorter
-          the buffer, the higher the risk of stuttering, but the shorter the
-          playout delay. For interactive applications, low delay may be
-          important, whereas for passive applications a stutter-free experience
-          may be more important.</p>
-          <p>Note that the delay is only a hint; a soft target. The user agent
-          must attempt to achieve the target by accelerating or decelerating
-          media, but it SHOULD NOT distort the media to the point of hurting
-          user experience by causing noticeable media distortions such as
-          audible speech expansions or video freezes. If the provided hint
-          exceeds jitter buffer maximum capacity then user agent will try to
-          keep jitter buffer delay close to its maximum capacity</p>
+          <p>This attribute affects how much additional delay the system adds,
+          by adjusting the length of the
+          jitter buffer. This allows to influence the tradeoffs between having a higher
+          delay and the risk that jitter buffer will run out of audio or video
+          frames to play due to network jitter.</p>
+          <p>The actual delay can be monitored through differentiating <code>
+            <a href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferdelay">jitterBufferDelay</a></code>
+          by <code><a href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferemittedcount">jitterBufferEmittedCount</a></code>
+          </p>
+          <p>The User Agent SHOULD maintain actual delay close to
+          <code>jitterBufferDelayHint</code> subjected to physcial constraints.
+          For instance:</p>
+          <ul>
+            <li>
+              If jitter buffer has run out of frames to play,
+              then it is infeasable to maintain any delay besides zero.
+            </li>
+            <li>
+              If <code>jitterBufferDelayHint</code> value is higher than jitter
+              buffer can maintain (e.g. delay is beyond jitter buffer maximum capacity), then it SHOULD
+              keep delay as high as possible.
+            </li>
+          </ul>
+          <p>The speed with each jitter buffer reaches <code>jitterBufferDelayHint</code>
+          MUST NOT hurt user experience by accelerating or deaccelerating audio or video too much.
           <p>On getting, this attribute MUST return the value of the
           <a>[[\ReceiverJitterBufferDelayHint]]</a> slot.</p>
           <p>On setting, the user agent MUST run the following steps:</p>
