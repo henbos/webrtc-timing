@@ -81,34 +81,37 @@
       <h2>Attributes</h2>
       <dl data-link-for="RTCRtpReceiver" data-dfn-for="RTCRtpReceiver"
       class="attributes">
-        <dt><code><dfn>jitterBufferDelayHint</dfn></code> of type <span class=
-        "idlAttrType"><a>double</a></span>, nullable</dt>
+        <dt><dfn><code>jitterBufferDelayHint</code></dfn> of type <span
+          class="idlAttrType">double</span>, nullable</dt>
         <dd>
           <p>This attribute affects how much additional delay the system adds,
-          by adjusting the length of the
-          jitter buffer. This allows to influence the tradeoffs between having a higher
-          delay and the risk that jitter buffer will run out of audio or video
-          frames to play due to network jitter.</p>
-          <p>The actual delay can be monitored through differentiating <code>
-            <a href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferdelay">jitterBufferDelay</a></code>
-          by <code><a href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferemittedcount">jitterBufferEmittedCount</a></code>
+          by adjusting the length of the jitter buffer. This allows to influence
+          the tradeoffs between having a higher delay and the risk that jitter
+          buffer will run out of audio or video frames to play due to network
+          jitter.</p>
+          <p>The actual delay can be monitored by differentiating <code><a
+          href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferdelay">
+          jitterBufferDelay</a></code> with respect to <code><a
+          href="https://w3c.github.io/webrtc-stats/#dom-rtcvideoreceiverstats-jitterbufferemittedcount">
+          jitterBufferEmittedCount</a></code>
           </p>
           <p>The User Agent SHOULD maintain actual delay close to
-          <code>jitterBufferDelayHint</code> subjected to physcial constraints.
+          <code>jitterBufferDelayHint</code> subjected to physical constraints.
           For instance:</p>
           <ul>
             <li>
               If jitter buffer has run out of frames to play,
-              then it is infeasable to maintain any delay besides zero.
+              then it is infeasible to maintain any delay besides zero.
             </li>
             <li>
               If <code>jitterBufferDelayHint</code> value is higher than jitter
-              buffer can maintain (e.g. delay is beyond jitter buffer maximum capacity), then it SHOULD
-              keep delay as high as possible.
+              buffer can maintain (e.g. delay is beyond jitter buffer maximum
+              capacity), then it SHOULD keep delay as high as possible.
             </li>
           </ul>
-          <p>The speed with each jitter buffer reaches <code>jitterBufferDelayHint</code>
-          MUST NOT hurt user experience by accelerating or deaccelerating audio or video too much.
+          <p>The speed with each jitter buffer reaches
+          <code>jitterBufferDelayHint</code> MUST NOT hurt user experience by
+          accelerating or deaccelerating audio or video too much.
           <p>On getting, this attribute MUST return the value of the
           <a>[[\ReceiverJitterBufferDelayHint]]</a> slot.</p>
           <p>On setting, the user agent MUST run the following steps:</p>
