@@ -96,6 +96,12 @@
           significantly impacts audio or video quality (e.g. bad network), or if
           the value implies allocating larger buffers than the User Agent is
           willing to provide.</p>
+          <p class="note">
+            The playout delay hint applies even if DTX is used. For example, if
+            DTX is used and packets start flowing after silence, the hint can
+            influence the User Agent to buffer these packets rather than playing
+            them out.
+          </p>
           <p>On getting, this attribute MUST return the value of the
           <a>[[\PlayoutDelayHint]]</a> internal slot.</p>
           <p>On setting, the User Agent MUST run the following steps:</p>
